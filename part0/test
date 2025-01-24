@@ -1,0 +1,14 @@
+sequenceDiagram
+Broswer->>Server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server-->>Broswer: The server responds with HTTP status code 302
+Broswer-->>Server: /exampleapp/notes
+
+Broswer->> Server:  GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->>Broswer: Gets CSS
+
+Broswer->> Server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server-->>Broswer: Gets JS
+
+
+Broswer->> Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->>Broswer: Gets Json
