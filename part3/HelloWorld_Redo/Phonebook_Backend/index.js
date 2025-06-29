@@ -26,9 +26,29 @@ let persons=[
     }
 ]
 
-app.get("/",(request,response) =>{
+app.get('/',(request,response) =>{
      response.send('<h1>Hello World!</h1>')
 })
+
+//getting request time
+const requestTime = function (req, res, next) {
+  req.requestTime = Date.now(); // Stores the timestamp in milliseconds
+  next(); // Passes control to the next middleware or route handler
+};
+
+app.use(requestTime); // Apply the middleware globally
+
+app.get('/api/info',(request,response) =>{
+    const pLength = persons.length
+    const dateString = new Date(request.requestTime).toLocaleString('en-US', {
+    timeZone: 'America/New_York',
+    timeZoneName: 'short'
+  });
+   response.send(
+    `Phonebook has info for ${pLength} people<br>${dateString}`
+  );
+})
+
 
 app.get('/api/persons',(request,response) => {
     response.json(persons)
